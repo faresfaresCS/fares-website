@@ -39,9 +39,15 @@ python3 scripts/smoke-test.py http://127.0.0.1:8080
 
 לאחר הפריסה — הפנו את הדומיין `faresfares.online` ל-hosting (DNS).
 
-## תשלומים מקוונים (עתידי)
+## תשלומים מקוונים (Hyp Pay)
 
-ראו [`docs/HYP-INTEGRATION.md`](docs/HYP-INTEGRATION.md) לתוכנית שילוב HYP, webhooks והתראות על רכישה.
+- **עכשיו:** הזמנות בוואטסאפ (Phase 1)
+- **מחר:** הוסיפו משתני סביבה ב-Vercel לפי [`.env.example`](.env.example) — ראו [`docs/HYP-PREP-CHECKLIST.md`](docs/HYP-PREP-CHECKLIST.md)
+- **פרטים טכניים:** [`docs/HYP-INTEGRATION.md`](docs/HYP-INTEGRATION.md)
+
+## חיבור דומיין
+
+ראו [`docs/DOMAIN-SETUP.md`](docs/DOMAIN-SETUP.md) לחיבור `faresfares.online` ל-Vercel.
 
 ## עדכון מוצרים מ-Wix
 

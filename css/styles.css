@@ -956,19 +956,28 @@ button {
   z-index: 200;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s;
+  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s;
 }
 
 .overlay.open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .panel {
   position: fixed;
   z-index: 210;
   background: var(--surface);
-  transition: transform 0.28s ease;
+  transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.panel.open {
+  pointer-events: auto;
+  visibility: visible;
 }
 
 /* Cart drawer */
@@ -1052,6 +1061,9 @@ button {
   padding: 1rem;
   border-top: 1px solid var(--border);
   padding-bottom: calc(1rem + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .cart-total {
@@ -1059,7 +1071,24 @@ button {
   justify-content: space-between;
   font-weight: 800;
   font-size: 1.05rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.btn-pay {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-pay:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 .btn-primary {

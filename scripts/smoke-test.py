@@ -21,7 +21,20 @@ def fetch(path: str) -> tuple[int, str, dict]:
 def main() -> int:
     errors: list[str] = []
 
-    for path in ["/", "/index.html", "/data/products.json", "/js/config.js", "/js/app.js", "/robots.txt", "/sitemap.xml", "/favicon.svg"]:
+    for path in [
+        "/",
+        "/index.html",
+        "/data/products.json",
+        "/js/config.js",
+        "/js/app.js",
+        "/robots.txt",
+        "/sitemap.xml",
+        "/favicon.svg",
+        "/og-image.png",
+        "/apple-touch-icon.png",
+        "/checkout/success.html",
+        "/checkout/error.html",
+    ]:
         try:
             status, _, _ = fetch(path)
             if status != 200:
@@ -59,13 +72,28 @@ def main() -> int:
             except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired) as e:
                 errors.append(f"sample image fetch failed: {e}")
 
+    _, html, _ = fetch("/")
+    _, css, _ = fetch("/css/styles.css")
+    _, app_js, _ = fetch("/js/app.js")
+
     wa_match = re.search(r'whatsapp:\s*"(\d+)"', config_js)
-    if wa_match:
-        phone = wa_match.group(1)
-        wa_href = f"https://wa.me/{phone}"
-        _, html, _ = fetch("/")
-        if "שליחת הזמנה בוואטסאפ" not in html:
-            errors.append("checkout WhatsApp button missing from index.html")
+    if wa_match and "שליחת הזמנה בוואטסאפ" not in html:
+        errors.append("checkout WhatsApp button missing from index.html")
+
+    if "og-image.png" not in html:
+        errors.append("Open Graph image meta tag missing from index.html")
+    if "apple-touch-icon.png" not in html:
+        errors.append("apple-touch-icon link missing from index.html")
+    if 'id="checkout-hyp"' not in html:
+        errors.append("Hyp checkout button missing from index.html")
+    if "pointer-events: none" not in css or ".panel.open" not in css:
+        errors.append("panel pointer-events fix missing from styles.css")
+    if 'id="product-modal"' not in html or 'id="close-modal"' not in html:
+        errors.append("product modal markup missing from index.html")
+    if 'id="overlay"' not in html:
+        errors.append("overlay element missing from index.html")
+    if "isInStock" not in app_js:
+        errors.append("out-of-stock handling missing from app.js")
 
     if errors:
         print("Smoke test FAILED:")

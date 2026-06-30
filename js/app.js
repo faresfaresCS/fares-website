@@ -879,6 +879,55 @@ function buildOrderMessage() {
   return lines.join("\n");
 }
 
+function buildCartItems() {
+  const cart = loadCart();
+  return Object.entries(cart).map(([productId, qty]) => ({ productId, qty }));
+}
+
+async function checkoutWithHyp() {
+  const cart = loadCart();
+  if (!cartCount(cart)) {
+    alert("העגלה ריקה");
+    return;
+  }
+
+  const btn = $("#checkout-hyp");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "מעביר לתשלום...";
+  }
+
+  try {
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: buildCartItems() }),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (res.status === 503 && data.error === "hyp_not_configured") {
+      alert("תשלום מאובטח יהיה זמין מחר לאחר חיבור Hyp Pay.\nבינתיים אפשר לשלוח הזמנה בוואטסאפ.");
+      return;
+    }
+
+    if (!res.ok) {
+      alert(data.message || data.error || "שגיאה ביצירת תשלום");
+      return;
+    }
+
+    if (data.paymentUrl) {
+      window.location.href = data.paymentUrl;
+    }
+  } catch {
+    alert("לא ניתן להתחבר לשרת התשלום. נסו שוב או שלחו הזמנה בוואטסאפ.");
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "תשלום מאובטח";
+    }
+  }
+}
+
 function setupWhatsAppLinks() {
   const msg = encodeURIComponent("שלום, אשמח לייעוץ לגבי מוצרים בחנות פארס פארס");
   const href = whatsappLink(decodeURIComponent(msg));
@@ -939,6 +988,7 @@ function setupUI() {
     }
     window.open(whatsappLink(buildOrderMessage()), "_blank", "noopener");
   });
+  $("#checkout-hyp")?.addEventListener("click", checkoutWithHyp);
 
   document.querySelectorAll(".mobile-bar [data-scroll]").forEach((btn) => {
     btn.addEventListener("click", () => {
