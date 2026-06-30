@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#c62828" />
+    <meta
+      name="description"
+      content="פארס פארס — חנות חומרי בניין, צבע, אינסטלציה וכלי עבודה בחיפה. משלוחים ואיסוף עצמי."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:site_name" content="פארס פארס" />
+    <meta property="og:title" content="פארס פארס | חנות אונליין" />
+    <meta
+      property="og:description"
+      content="חומרי בניין, צבע, אינסטלציה וכלי עבודה בחיפה. משלוחים ואיסוף עצמי."
+    />
+    <meta property="og:url" content="https://www.faresfares.online/" />
+    <meta property="og:image" content="https://www.faresfares.online/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="פארס פארס | חנות אונליין" />
+    <meta
+      name="twitter:description"
+      content="חומרי בניין, צבע, אינסטלציה וכלי עבודה בחיפה. משלוחים ואיסוף עצמי."
+    />
+    <meta name="twitter:image" content="https://www.faresfares.online/og-image.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>פארס פארס | חנות אונליין</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand-block">
+          <h1 id="store-name">פארס פארס</h1>
+          <p id="store-tagline">חומרי בניין, צבע, אינסטלציה וכלי עבודה</p>
+        </div>
+        <button type="button" class="icon-btn" id="btn-cart" aria-label="עגלת קניות">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6h15l-1.5 9h-12z" />
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="18" cy="20" r="1.5" />
+            <path d="M6 6L5 3H2" />
+          </svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+        <a class="icon-btn" id="btn-whatsapp-header" href="#" aria-label="וואטסאפ">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="search-bar">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="חיפוש מוצרים..."
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+      </div>
+    </header>
+
+    <section class="hero" id="section-home">
+      <div class="wix-banner" id="wix-banner"></div>
+      <div class="hero-card">
+        <h2>ברוכים הבאים לפארס פארס</h2>
+        <p>מגוון מוצרים מקצועיים — איסוף עצמי בחיפה או משלוח לכל הארץ</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#products">לקטלוג המוצרים</a>
+          <a class="btn btn-ghost" id="hero-whatsapp" href="#">ייעוץ בוואטסאפ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-layout" id="products">
+      <aside class="category-sidebar" id="category-sidebar" aria-label="קטגוריות מוצרים">
+        <h3>קטגוריות</h3>
+        <nav class="category-list" id="category-sidebar-list"></nav>
+        <div class="subfilters" id="subcategory-filters">
+          <h3>סינון נוסף</h3>
+          <div id="subfilter-options"></div>
+          <div class="subfilter-group" id="subfilter-brands-wrap" hidden>
+            <h4>מותג</h4>
+            <nav class="subfilter-list" id="subfilter-brands"></nav>
+          </div>
+          <div class="subfilter-group" id="subfilter-ribbons-wrap" hidden>
+            <h4>תווית</h4>
+            <nav class="subfilter-list" id="subfilter-ribbons"></nav>
+          </div>
+        </div>
+      </aside>
+      <div class="catalog-main">
+        <div class="categories-wrap categories-mobile">
+          <h3>קטגוריות</h3>
+          <div class="categories" id="categories" role="tablist" aria-label="קטגוריות מוצרים"></div>
+        </div>
+        <div class="subfilters-mobile" id="subfilters-mobile">
+          <label class="subfilter-select-wrap">
+            <span class="sr-only">מותג</span>
+            <select id="brand-select" aria-label="סינון לפי מותג">
+              <option value="">כל המותגים</option>
+            </select>
+          </label>
+          <button type="button" class="chip chip-toggle" id="sale-toggle" data-sale="0">במבצע</button>
+          <select id="ribbon-select" aria-label="סינון לפי תווית" hidden>
+            <option value="">כל התוויות</option>
+          </select>
+        </div>
+        <div class="subcategory-bar" id="subcategory-bar" hidden>
+          <div class="subcategory-bar-header">
+            <h2 id="subcategory-bar-title"></h2>
+            <p class="subcategory-bar-subtitle">סננו לפי תחומים עיקריים</p>
+          </div>
+          <div class="subcategory-carousel-wrap">
+            <button type="button" class="subcategory-scroll subcategory-scroll-prev" id="subcategory-scroll-prev" aria-label="גלילה ימינה">›</button>
+            <div class="subcategory-carousel" id="subcategory-chips" role="tablist" aria-label="תת-קטגוריות"></div>
+            <button type="button" class="subcategory-scroll subcategory-scroll-next" id="subcategory-scroll-next" aria-label="גלילה שמאלה">‹</button>
+          </div>
+        </div>
+        <div class="results-meta">
+          <div class="results-meta-left">
+            <span id="results-count"></span>
+            <button type="button" id="clear-filters" class="clear-filters" hidden>נקה סינון</button>
+          </div>
+          <span id="page-info"></span>
+        </div>
+        <div class="loading" id="loading">טוען מוצרים...</div>
+        <div class="product-grid" id="product-grid" hidden></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <p>לא נמצאו מוצרים. נסו חיפוש אחר או קטגוריה אחרת.</p>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="עמודים" hidden></nav>
+      </div>
+    </section>
+
+    <footer class="site-footer" id="section-info">
+      <div class="footer-inner footer-grid">
+        <div>
+          <h3>משלוחים ואיסוף</h3>
+          <ul>
+            <li><strong>איסוף עצמי (חינם)</strong> — רחוב ח'ורי 33, חיפה (בתיאום מראש)</li>
+            <li><strong>משלוח מקומי</strong> — חיפה והסביבה, עד שעתיים</li>
+            <li><strong>משלוח ארצי</strong> — עד 5–8 ימי עסקים</li>
+          </ul>
+        </div>
+        <div>
+          <h3>יצירת קשר</h3>
+          <p id="footer-address">רחוב ח'ורי 33, חיפה</p>
+          <p id="footer-phone" hidden></p>
+          <p>הזמנות טלפוניות וייעוץ מקצועי — שלחו הודעה בוואטסאפ</p>
+          <a class="btn btn-primary" id="footer-whatsapp" href="#" style="display: inline-flex; width: auto; margin-top: 0.5rem"
+            >פתיחת וואטסאפ</a
+          >
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 1.5rem; font-size: 0.75rem; color: var(--muted)">
+        © <span id="year"></span> פארס פארס
+      </p>
+    </footer>
+
+    <nav class="mobile-bar" aria-label="ניווט ראשי">
+      <button type="button" class="active" data-scroll="section-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 10.5L12 3l9 7.5V21a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1z" />
+        </svg>
+        בית
+      </button>
+      <button type="button" data-scroll="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        מוצרים
+      </button>
+      <button type="button" id="bar-cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6h15l-1.5 9h-12z" />
+          <circle cx="9" cy="20" r="1.5" />
+          <circle cx="18" cy="20" r="1.5" />
+        </svg>
+        עגלה
+      </button>
+      <button type="button" data-scroll="section-info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5M12 8h.01" />
+        </svg>
+        מידע
+      </button>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="panel cart-panel" id="cart-panel" aria-label="עגלת קניות">
+      <div class="panel-header">
+        <h2>העגלה שלי</h2>
+        <button type="button" class="icon-btn" id="close-cart" aria-label="סגירה">✕</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>סה״כ</span>
+          <span id="cart-total">₪0</span>
+        </div>
+        <button type="button" class="btn-primary" id="checkout-whatsapp">שליחת הזמנה בוואטסאפ</button>
+        <button type="button" class="btn-secondary" id="clear-cart">ריקון עגלה</button>
+      </div>
+    </aside>
+
+    <section class="panel product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="panel-header">
+        <h2 id="modal-title">פרטי מוצר</h2>
+        <button type="button" class="icon-btn" id="close-modal" aria-label="סגירה">✕</button>
+      </div>
+      <div class="modal-scroll" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer"></div>
+    </section>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>
