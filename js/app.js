@@ -285,7 +285,7 @@ function getSubcategoryThumbnail(category, subName) {
   return product?.image || null;
 }
 
-function subcategoryTileHtml(subName, label, count, imageUrl) {
+function subcategoryTileHtml(subName, label, imageUrl) {
   const active = activeSubcategory === subName ? " active" : "";
   const imgContent = imageUrl
     ? `<img src="${escapeAttr(imageUrl)}" alt="" loading="lazy" />`
@@ -294,7 +294,6 @@ function subcategoryTileHtml(subName, label, count, imageUrl) {
     <button type="button" class="subcategory-tile${active}" data-sub="${escapeAttr(subName)}" role="tab" aria-selected="${activeSubcategory === subName}">
       <span class="subcategory-tile-img">${imgContent}</span>
       <span class="subcategory-tile-label">${escapeHtml(label)}</span>
-      <span class="subcategory-tile-count">${count.toLocaleString("he-IL")} מוצרים</span>
     </button>`;
 }
 
@@ -349,18 +348,12 @@ function renderSubcategoryBar() {
     title.textContent = categoryLabel(activeCategory);
   }
 
-  const allCount = getFacetPool({
-    excludeBrand: true,
-    excludeRibbon: true,
-    excludeSale: true,
-    excludeSubcategory: true,
-  }).length;
   const allImage = getSubcategoryThumbnail(activeCategory, "");
 
   el.innerHTML = [
-    subcategoryTileHtml("", "הכל", allCount, allImage),
+    subcategoryTileHtml("", "הכל", allImage),
     ...facets.map((s) =>
-      subcategoryTileHtml(s.name, s.name, s.count, getSubcategoryThumbnail(activeCategory, s.name))
+      subcategoryTileHtml(s.name, s.name, getSubcategoryThumbnail(activeCategory, s.name))
     ),
   ].join("");
 
@@ -396,17 +389,12 @@ function renderCategoryChips() {
 function renderCategorySidebar() {
   const el = $("#category-sidebar-list");
   if (!el) return;
-  const allCount = catalog.products.length;
-  const items = [
-    { id: "", label: "הכל", count: allCount },
-    ...getCategoryList(),
-  ];
+  const items = [{ id: "", label: "הכל" }, ...getCategoryList()];
   el.innerHTML = items
     .map(
       (c) => `
     <button type="button" class="category-item${activeCategory === c.id ? " active" : ""}" data-cat="${escapeAttr(c.id)}">
       <span>${escapeHtml(c.label)}</span>
-      <span class="count">(${c.count.toLocaleString("he-IL")})</span>
     </button>`
     )
     .join("");
@@ -426,7 +414,6 @@ function renderSubfiltersSidebar() {
       saleCount > 0
         ? `<button type="button" class="subfilter-toggle${onSaleOnly ? " active" : ""}" id="sidebar-sale-toggle">
             <span>במבצע בלבד</span>
-            <span class="count">(${saleCount.toLocaleString("he-IL")})</span>
           </button>`
         : "";
     $("#sidebar-sale-toggle")?.addEventListener("click", () => setOnSaleOnly(!onSaleOnly));
@@ -443,7 +430,6 @@ function renderSubfiltersSidebar() {
           (b) =>
             `<button type="button" class="subfilter-item${activeBrand === b.name ? " active" : ""}" data-brand="${escapeAttr(b.name)}">
               <span>${escapeHtml(b.name)}</span>
-              <span class="count">(${b.count.toLocaleString("he-IL")})</span>
             </button>`
         ),
       ].join("");
@@ -467,7 +453,6 @@ function renderSubfiltersSidebar() {
           (r) =>
             `<button type="button" class="subfilter-item${activeRibbon === r.name ? " active" : ""}" data-ribbon="${escapeAttr(r.name)}">
               <span>${escapeHtml(r.name)}</span>
-              <span class="count">(${r.count.toLocaleString("he-IL")})</span>
             </button>`
         ),
       ].join("");
@@ -492,7 +477,7 @@ function renderSubfiltersMobile() {
       `<option value="">כל המותגים</option>`,
       ...brands.map(
         (b) =>
-          `<option value="${escapeAttr(b.name)}"${activeBrand === b.name ? " selected" : ""}>${escapeHtml(b.name)} (${b.count})</option>`
+          `<option value="${escapeAttr(b.name)}"${activeBrand === b.name ? " selected" : ""}>${escapeHtml(b.name)}</option>`
       ),
     ].join("");
     brandSelect.onchange = () => setBrand(brandSelect.value);
@@ -513,7 +498,7 @@ function renderSubfiltersMobile() {
         `<option value="">כל התוויות</option>`,
         ...ribbons.map(
           (r) =>
-            `<option value="${escapeAttr(r.name)}"${activeRibbon === r.name ? " selected" : ""}>${escapeHtml(r.name)} (${r.count})</option>`
+            `<option value="${escapeAttr(r.name)}"${activeRibbon === r.name ? " selected" : ""}>${escapeHtml(r.name)}</option>`
         ),
       ].join("");
       ribbonSelect.onchange = () => setRibbon(ribbonSelect.value);
@@ -525,14 +510,12 @@ function renderSubfiltersMobile() {
 }
 
 function updateResultsMeta() {
-  const total = filtered.length;
   const parts = [];
   if (activeCategory) parts.push(categoryLabel(activeCategory));
   if (activeSubcategory) parts.push(activeSubcategory);
   if (activeBrand) parts.push(activeBrand);
   if (onSaleOnly) parts.push("במבצע");
   if (activeRibbon) parts.push(activeRibbon);
-  parts.push(`${total.toLocaleString("he-IL")} מוצרים`);
   $("#results-count").textContent = parts.join(" · ");
 
   const hasFilters =
