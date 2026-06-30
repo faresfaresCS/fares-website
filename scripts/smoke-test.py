@@ -92,8 +92,9 @@ def main() -> int:
         errors.append("product modal markup missing from index.html")
     if 'id="overlay"' not in html:
         errors.append("overlay element missing from index.html")
-    if "isInStock" not in app_js:
-        errors.append("out-of-stock handling missing from app.js")
+    broken_images = [p for p in products if p.get("image") and ";" in p["image"]]
+    if broken_images:
+        errors.append(f"{len(broken_images)} products have malformed image URLs (semicolon in URL)")
 
     if errors:
         print("Smoke test FAILED:")

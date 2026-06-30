@@ -59,6 +59,19 @@ def strip_html(text: str, limit: int = 200) -> str:
     return text[:limit]
 
 
+def wix_media_url(filename: str) -> str:
+    return f"https://static.wixstatic.com/media/{filename}"
+
+
+def parse_product_images(row: dict) -> tuple[str | None, list[str]]:
+    raw = (row.get("productImageUrl") or "").strip()
+    if not raw:
+        return None, []
+    filenames = [part.strip() for part in raw.split(";") if part.strip()]
+    urls = [wix_media_url(name) for name in filenames]
+    return (urls[0] if urls else None), urls
+
+
 def calc_prices(row: dict) -> tuple[float, float | None]:
     price = float(row.get("price") or 0)
     mode = row.get("discountMode", "")
@@ -82,16 +95,13 @@ def build(csv_path: str) -> None:
                 continue
 
             price, sale_price = calc_prices(row)
-            img = (row.get("productImageUrl") or "").strip()
-            products.append(
-                {
+            image, images = parse_product_images(row)
+            product = {
                     "id": row["handleId"],
                     "name": row["name"],
                     "price": price,
                     "salePrice": sale_price,
-                    "image": (
-                        f"https://static.wixstatic.com/media/{img}" if img else None
-                    ),
+                    "image": image,
                     "collections": [
                         c.strip()
                         for c in (row.get("collection") or "").split(";")
@@ -103,7 +113,9 @@ def build(csv_path: str) -> None:
                     "excerpt": strip_html(row.get("description", "")),
                     "description": row.get("description", ""),
                 }
-            )
+            if len(images) > 1:
+                product["images"] = images
+            products.append(product)
 
     collections = sorted({c for p in products for c in p["collections"]})
     collection_counts: dict[str, int] = {}
